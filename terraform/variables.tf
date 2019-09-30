@@ -27,8 +27,8 @@ variable "public_subnet_ids" {
 }
 
 variable "app_image" {
-  default     = "adongy/hostname-docker:latest"
-  description = "Docker image to run in the ECS cluster"
+  default     = "fluent/fluentd:v1.7-1"
+  description = "Fluentd docker image to run in the ECS cluster"
 }
 
 variable "app_name" {
