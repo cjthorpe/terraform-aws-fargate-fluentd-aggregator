@@ -2,7 +2,7 @@ resource "aws_lb" "fluentd" {
   internal           = false
   load_balancer_type = "network"
   name               = "fargate-fluentd-lb"
-  subnets            = "${var.public_subnet_ids[*]}"
+  subnets            = var.public_subnet_ids[*]
 }
 
 resource "aws_lb_target_group" "fluentd" {

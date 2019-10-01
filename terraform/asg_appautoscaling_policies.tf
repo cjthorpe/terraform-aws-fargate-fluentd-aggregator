@@ -16,7 +16,7 @@ resource "aws_appautoscaling_policy" "scale_up" {
   name               = "${var.service}-${terraform.workspace}-scale-up"
   policy_type        = "StepScaling"
   resource_id        = "service/${aws_ecs_cluster.fluentd.name}/${aws_ecs_service.fluentd.name}"
-  scalable_dimension = "${aws_appautoscaling_target.service_scale_target.scalable_dimension}"
+  scalable_dimension = aws_appautoscaling_target.service_scale_target.scalable_dimension
   service_namespace  = "ecs"
 
   step_scaling_policy_configuration {
@@ -41,7 +41,7 @@ resource "aws_appautoscaling_policy" "scale_down" {
   name               = "${var.service}-${terraform.workspace}-scale-down"
   policy_type        = "StepScaling"
   resource_id        = "service/${aws_ecs_cluster.fluentd.name}/${aws_ecs_service.fluentd.name}"
-  scalable_dimension = "${aws_appautoscaling_target.service_scale_target.scalable_dimension}"
+  scalable_dimension = aws_appautoscaling_target.service_scale_target.scalable_dimension
   service_namespace  = "ecs"
 
   step_scaling_policy_configuration {

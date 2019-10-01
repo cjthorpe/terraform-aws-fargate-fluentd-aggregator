@@ -9,17 +9,17 @@ resource "aws_cloudwatch_metric_alarm" "cpu_high" {
   evaluation_periods  = "1"
   metric_name         = "CPUUtilization"
   namespace           = "AWS/ECS"
-  period              = "${var.scale_up_period}"
+  period              = var.scale_up_period
   statistic           = "Average"
-  threshold           = "${var.scale_up_cpu_threshold}"
+  threshold           = var.scale_up_cpu_threshold
 
   alarm_actions = [
-    "${aws_appautoscaling_policy.scale_up.arn}",
+    aws_appautoscaling_policy.scale_up.arn,
   ]
 
   dimensions = {
-    ClusterName = "${aws_ecs_cluster.fluentd.name}"
-    ServiceName = "${aws_ecs_cluster.fluentd.name}"
+    ClusterName = aws_ecs_cluster.fluentd.name
+    ServiceName = aws_ecs_cluster.fluentd.name
   }
 }
 
@@ -30,16 +30,16 @@ resource "aws_cloudwatch_metric_alarm" "cpu-low" {
   evaluation_periods  = "1"
   metric_name         = "CPUUtilization"
   namespace           = "AWS/ECS"
-  period              = "${var.scale_down_period}"
+  period              = var.scale_down_period
   statistic           = "Average"
-  threshold           = "${var.scale_down_cpu_threshold}"
+  threshold           = var.scale_down_cpu_threshold
 
   alarm_actions = [
-    "${aws_appautoscaling_policy.scale_down.arn}",
+    aws_appautoscaling_policy.scale_down.arn,
   ]
 
   dimensions = {
-    ClusterName = "${aws_ecs_cluster.fluentd.name}"
-    ServiceName = "${aws_ecs_cluster.fluentd.name}"
+    ClusterName = aws_ecs_cluster.fluentd.name
+    ServiceName = aws_ecs_cluster.fluentd.name
   }
 }

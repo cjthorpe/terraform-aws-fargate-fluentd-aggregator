@@ -1,15 +1,15 @@
 [
   {
-    "cpu": "${fargate_cpu}",
+    "cpu": ${fargate_cpu},
     "essential": true,
     "image": "${app_image}",
-    "memory": "${fargate_memory}",
+    "memory": ${fargate_memory},
     "name": "${app_name}",
     "networkMode": "awsvpc",
     "portMappings": [
       {
-        "containerPort": "${fluentd_port}",
-        "hostPort": "${fluentd_port}"
+        "containerPort": ${fluentd_port},
+        "hostPort": ${fluentd_port}
       }
     ],
     "logConfiguration": {
@@ -19,12 +19,6 @@
         "awslogs-region": "${log_group_region}",
         "awslogs-stream-prefix": "fargate-fluentd"
       }
-    },
-    "HealthCheck": {
-      "command": {
-        "CMD-SHELL": "curl http://localhost:8888/healthcheck?json=%7B%22log%22%3A+%22health+check%22%7D || exit 1"
-      },
-      "startPeriod": "30"
     }
   }
 ]
