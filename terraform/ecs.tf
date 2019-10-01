@@ -22,7 +22,7 @@ resource "aws_ecs_service" "fluentd" {
 
   network_configuration {
     security_groups = ["${aws_security_group.fluentd_alb_sg.id}"]
-    subnets         = ["${var.private_subnet_ids}"]
+    subnets         = "${var.private_subnet_ids[*]}"
   }
 
   load_balancer {
@@ -42,7 +42,7 @@ resource "aws_ecs_service" "fluentd" {
 data "template_file" "ecs" {
   template = "${file("templates/task-definition.json")}"
 
-  vars {
+  vars = {
     app_name = "${var.app_name}"
     fargate_cpu      = "${var.fargate_cpu}"
     fargate_memory   = "${var.fargate_memory}"

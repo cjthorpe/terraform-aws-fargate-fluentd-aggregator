@@ -13,16 +13,16 @@ variable "service" {
 }
 
 variable "vpc_id" {
-  default = "vpc-4e54e628"
+  default = "vpc-040d311896f939d47"
 }
 
 variable "private_subnet_ids" {
-  default = [ "subnet-9378b7f5", "subnet-4a9a4602" ]
+  default = [ "subnet-08c35080b517170cd", "subnet-073560361c12444ef" ]
   type = list
 }
 
 variable "public_subnet_ids" {
-  default = [ "subnet-2777b841", "subnet-d399459b" ]
+  default = [ "subnet-09ce241e9d5549fd3", "subnet-08a079bd976b0ca9b" ]
   type = list
 }
 

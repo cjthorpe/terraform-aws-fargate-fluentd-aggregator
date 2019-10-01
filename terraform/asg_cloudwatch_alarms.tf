@@ -17,7 +17,7 @@ resource "aws_cloudwatch_metric_alarm" "cpu_high" {
     "${aws_appautoscaling_policy.scale_up.arn}",
   ]
 
-  dimensions {
+  dimensions = {
     ClusterName = "${aws_ecs_cluster.fluentd.name}"
     ServiceName = "${aws_ecs_cluster.fluentd.name}"
   }
@@ -38,7 +38,7 @@ resource "aws_cloudwatch_metric_alarm" "cpu-low" {
     "${aws_appautoscaling_policy.scale_down.arn}",
   ]
 
-  dimensions {
+  dimensions = {
     ClusterName = "${aws_ecs_cluster.fluentd.name}"
     ServiceName = "${aws_ecs_cluster.fluentd.name}"
   }
